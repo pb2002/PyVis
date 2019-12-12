@@ -15,11 +15,10 @@ def layer1():
     noStroke()
     circle(400,400,380)
 
-i = 0
+
 @kernel.pool("draw", 2)
 def layer2():
-    global i
-    i += 1
+
     fill(255,32,96)
     stroke(255)
     strokeWeight(2)
@@ -34,12 +33,9 @@ def layer2():
     fill(32,225,255)
     stroke(192)
     strokeWeight(1)
-    if(i > 500):
-        print(kernel.current_fps)
-        i = 0
-#    line(70,120,730,120,False)
-#    font('Segoe UI',48,True)
-#    label(180,120,'PyVis Example App')
-#    font('Segoe UI',24,False)
-#    label(180,200,"FPS: {0:0.2f}".format(kernel.current_fps))
+    line(70,120,730,120,False)
+    font('Segoe UI',48,True)
+    label(180,120,'PyVis Example App')
+    font('Segoe UI',24,False)
+    label(180,200,"FPS: {0:0.2f}".format(kernel.current_fps))
 kernel.run()
