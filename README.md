@@ -6,9 +6,9 @@ PyVis is a 2D graphics API that mimics the Processing API.
 
 1. Download the repository as a .zip file.
 2. Copy and paste __all__ files into your project folder
-3. Make sure you've got all of the required pip packages installed
-by running the `__install__.py` file.
-4. Remove the `__install__.py` file.
+3. Make sure you've got all of the required pip packages:
+    * pygame
+    * colorama
 
 ## How to use
 

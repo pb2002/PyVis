@@ -1,11 +1,11 @@
-import numpy as np
 import colorama
 import pygame
 from time import sleep
-from info import VERSION
 from datetime import datetime
+
 import kernel
 from vec2 import vec2
+from info import VERSION
 
 width = 256
 height = 256
