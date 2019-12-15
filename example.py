@@ -1,41 +1,50 @@
-from pyvis import *
+import pyvis as pv
 
-pyvis_init()
+pv.init()
 
-@kernel.pool("setup", 1)
+
+@pv.kernel.pool("setup", 1)
 def start():
-    frameRate(1000)
-    size(800,800)
-    print("hello, this method was called from the setup pool!")
+    pv.framerate(120)
+    pv.size(1280, 720)
+    #pv.fullscreen()
+    pv.kernel.log("hello, this method was called from the setup pool!", 4)
 
-@kernel.pool("draw", 1) # this layer gets drawn first because it has a higher priority level
+
+# this layer gets drawn first because it has a higher priority level
+@pv.kernel.pool("draw", 1)
 def layer1():
-    background(0,16,32)
-    fill(0,24,48)
-    noStroke()
-    circle(400,400,380)
+    pv.background(0, 16, 32)
+
+    pv.fill(0, 24, 48)
+    pv.noStroke()
+    pv.circle(pv.width // 2, pv.height // 2, pv.height // 2 - 50)
 
 
-@kernel.pool("draw", 2)
+@pv.kernel.pool("draw", 2)
 def layer2():
+    offset = (pv.width - 700) // 2
+    pv.fill(255, 32, 96)
+    pv.stroke(255)
+    pv.strokeWeight(2)
 
-    fill(255,32,96)
-    stroke(255)
-    strokeWeight(2)
+    pv.rect(offset + 10, 10, 80, 80)
+    pv.ellipse(offset + 110, 10, 180, 80)
+    pv.circle(offset + 350, 50, 40)
+    pv.polygon([(offset + 410, 10), (offset + 490, 10), (offset + 450, 90)])
+    pv.line(offset + 510, 10, offset + 590, 90, False)
+    pv.line(offset + 610, 10, offset + 690, 90, True)
 
-    rect(60,10,80,80)
-    ellipse(160,10,180,80)
-    circle(400,50,40)
-    polygon([(460,10),(540,10),(500,90)])
-    line(560,10,640,90,False)
-    line(660,10,740,90,True)
-    
-    fill(32,225,255)
-    stroke(192)
-    strokeWeight(1)
-    line(70,120,730,120,False)
-    font('Segoe UI',48,True)
-    label(180,120,'PyVis Example App')
-    font('Segoe UI',24,False)
-    label(180,200,"FPS: {0:0.2f}".format(kernel.current_fps))
-kernel.run()
+    pv.fill(32, 225, 255)
+    pv.stroke(192)
+    pv.strokeWeight(1)
+
+    pv.line(offset + 10, 120, offset + 690, 120, False)
+
+    pv.font('Montserrat', 48, True)
+    pv.label(pv.width // 2, 120, 'PyVis Example App', centered=True)
+    pv.font('Montserrat', 18, False)
+    pv.label(15, 15, "FPS: {0:0.2f}".format(pv.kernel.capped_framerate), centered=False)
+    pv.label(15, 45, "Potential FPS: {0:0.2f}".format(pv.kernel.potential_framerate), centered=False)
+
+pv.kernel.run()

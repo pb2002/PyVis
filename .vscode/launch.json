@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/example.py",
             "console": "integratedTerminal"
-        }
+        },
         {
             "name": "Run Current File",
             "type": "python",
