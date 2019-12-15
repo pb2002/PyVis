@@ -1,4 +1,5 @@
 import pygame
+import colorama
 from inspect import signature
 from time import sleep, clock
 from datetime import datetime
@@ -24,13 +25,13 @@ def log(msg, level):
     if logging_level > level: return
     timestamp = datetime.now().strftime("%H:%M:%S")
     if level is 0: # trace
-        print(f"[{timestamp}] TRACE: {msg}")
+        print(f"\033[37m[{timestamp}] TRACE: {msg}")
     if level is 1: # info
-        print(f"[{timestamp}] INFO: {msg}")
+        print(f"\033[36m[{timestamp}] INFO: {msg}")
     if level is 2: # warning
-        print(f"[{timestamp}] WARN: {msg}")
+        print(f"\033[93m[{timestamp}] WARN: {msg}")
     if level is 3: # error
-        print(f"[{timestamp}] ERROR: {msg}")
+        print(f"\033[91m[{timestamp}] ERROR: {msg}")
         
 def prioritySort(e): return e[1]
 def pool(name, priority):

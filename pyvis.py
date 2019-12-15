@@ -1,7 +1,9 @@
 import numpy as np
+import colorama
 import pygame
 from time import sleep
-
+from info import VERSION
+from datetime import datetime
 import kernel
 from vec2 import vec2
 
@@ -17,13 +19,33 @@ _pr_strokeWeight = 1
 _pr_fill = (255, 255, 255)
 _pr_noFill = False
 
+def splash():
+    if datetime.now().month == 12:
+        print(
+f"""\033[91m
+ --------------\033[32m PyVis 0.1.5a \033[91m----------------\033[97m
+ Happy holidays from the PyVis developer!  :3
+   For help, please check the documentation   
+           at the GitHub repository.          \033[91m
+ -------------------------------------------- \033[39;49m
+""")
+    else:
+        print(
+f"""\033[94m
+ -------------\033[97m PyVis 0.1.5a \033[94m--------------\033[36m
+    Hello from the PyVis developer!  :3
+ For help,  please check the documentation 
+         at the GitHub repository.         \033[94m
+ ----------------------------------------- \033[39;49m
+""")
 def init():
     """Init function for PyVis (run this at the beginning of your program)"""
     global _screen
     pygame.init()
+    colorama.init()
     _screen = pygame.display.set_mode((256, 256))
     _pr_font = pygame.font.SysFont("arial", 18)
-
+    splash()
 def size(x: int, y: int):
     """
     Changes the size of the window
@@ -137,6 +159,7 @@ def circle(x: int, y: int, r: int):
     if _pr_strokeWeight > 0:
         pygame.draw.circle(_screen, _pr_stroke, (x, y), r, _pr_strokeWeight)
 
+centered_tmp_feature_warning = True
 def label(x: int, y: int, text: str, aa = True, centered = False):
     """
     Draws a text label at point `(x,y)` with a given text string (`text`)
@@ -144,7 +167,12 @@ def label(x: int, y: int, text: str, aa = True, centered = False):
     Keyword Arguments:
     - `aa [bool]` -- Enables or disables anti-aliasing (default: `True`)
     """
+    global centered_tmp_feature_warning
     if centered:
+        if centered_tmp_feature_warning:
+            kernel.log("The 'centered' argument is temporary, and will be replaced by an alignment argument in the future.",2)
+            centered_tmp_feature_warning = False
+
         text_surf = _pr_font.render(text, aa, _pr_fill)
         w = text_surf.get_rect().width
         _screen.blit(text_surf, (x - (w // 2), y))
@@ -163,6 +191,7 @@ def font(name: str, size: int, bf = False, it = False):
         `it [bool]` -- makes the text slanted (default: False)
     """
     global _pr_font
+    
     font_id = f'{name}-{size}'
     font_id += ('-bf' if bf else '') + ('-it' if it else '')
     if font_id in _cached_fonts:
@@ -179,6 +208,7 @@ def caption(t: str):
     pygame.display.set_caption(t)
 
 def fullscreen(w=0, h=0):
+    
     """
     Enables fullscreen rendering. Use size() to go back to windowed mode.
     The fullscreen resolution will be the same as it was previously, unless
