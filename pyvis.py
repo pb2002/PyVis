@@ -38,6 +38,7 @@ f"""\033[94m
          at the GitHub repository.         \033[94m
  ----------------------------------------- \033[39;49m
 """)
+
 def init():
     """Init function for PyVis (run this at the beginning of your program)"""
     global _screen
