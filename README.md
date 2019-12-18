@@ -4,7 +4,13 @@ PyVis is a 2D graphics API that mimics the Processing API.
 
 ## Installation
 
-1. [Download the repository as a .zip file.](https://github.com/pb2002/PyVis/archive/master.zip)
+1. [Download the repository as a .zip file.](https://github.com/pb2002/PyVis/archive/master.zip)  
+OR use pip to install it from PyPI (and skip all other installation steps, unless you want to try out the example):
+
+    ```Terminal
+    pip install piefish
+    ```
+
 2. Copy and paste __all__ .py files into your project folder.
 3. Make sure you've got all of the required pip packages installed:
     * pygame
@@ -78,12 +84,25 @@ own application.
 
 ---
 
+## PyVis 0.1.8a
+
+### Change log
+
+* PyVis is now a PyPI package!
+* Renamed package to piefish to remove name conflicts (I had to come up with something..)
+* Some other minor stuff
+
+### Hotfixes
+
+1. 0.1.8a1
+    * updated this file
+
 ## PyVis 0.1.5a
 
 ### Change log
 
-* Further improvements in kernel loop
-* Added splash screen
+* Further improvements in kernel loop.
+* Added splash screen.
 * Expanded functionality in fps monitoring.
 * Improved and added log messages.
 * Command line colors! :D
@@ -94,7 +113,7 @@ own application.
 
 ### Change log
 
-* Improved kernel loop performance
-* Fullscreen now works properly
+* Improved kernel loop performance.
+* Fullscreen now works properly.
 
 ---

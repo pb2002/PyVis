@@ -1,11 +1,11 @@
+from .kernel import kernel
+from .info import VERSION
+from .vec2 import vec2
+
 import colorama
 import pygame
 from time import sleep
 from datetime import datetime
-
-import kernel
-from vec2 import vec2
-from info import VERSION
 
 width = 256
 height = 256
@@ -23,7 +23,7 @@ def splash():
     if datetime.now().month == 12:
         print(
 f"""\033[91m
- --------------\033[32m PyVis 0.1.5a \033[91m----------------\033[97m
+ --------------\033[32m piefish 0.1.8a \033[91m----------------\033[97m
  Happy holidays from the PyVis developer!  :3
    For help, please check the documentation   
            at the GitHub repository.          \033[91m
@@ -32,7 +32,7 @@ f"""\033[91m
     else:
         print(
 f"""\033[94m
- -------------\033[97m PyVis 0.1.5a \033[94m--------------\033[36m
+ -------------\033[97m piefish 0.1.8a \033[94m--------------\033[36m
     Hello from the PyVis developer!  :3
  For help,  please check the documentation 
          at the GitHub repository.         \033[94m

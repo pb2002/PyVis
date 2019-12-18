@@ -4,6 +4,7 @@ from inspect import signature
 from time import sleep, clock
 from datetime import datetime
 
+
 # ADJUSTABLE VALUES ------------------------
 fps_polling_interval = 0.3
 logging_level = 0
@@ -16,6 +17,7 @@ capped_framerate = _pr_framerate_cap
 potential_framerate = 0
 delta_time = 0
 _function_pool = {"setup":[], "draw": [], "event":[]}
+
 
 def log(msg, level):
     """
@@ -32,8 +34,9 @@ def log(msg, level):
         print(f"\033[93m[{timestamp}] WARN: {msg}")
     if level is 3: # error
         print(f"\033[91m[{timestamp}] ERROR: {msg}")
-        
+
 def prioritySort(e): return e[1]
+
 def pool(name, priority):
     """
     Adds a function to the given function pool.
@@ -65,6 +68,7 @@ def pool(name, priority):
         log(f"Added function '{f.__name__}()' to the {name} pool.",0)
         return f
     return wrapper
+
 def run():
     """
     Starts the kernel loop.

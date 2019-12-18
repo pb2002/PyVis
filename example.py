@@ -1,4 +1,4 @@
-import pyvis as pv
+import piefish as pv
 
 pv.init()
 
